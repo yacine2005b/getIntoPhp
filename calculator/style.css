@@ -1,0 +1,36 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+form input {
+	padding: 35px;
+	font-size: 1.3rem;
+}
+
+form select {
+	padding: 35px;
+	font-size: 1.3rem;
+}
+
+button {
+	padding: 2.4rem;
+}
+
+div {
+	font-size: 2rem;
+}
