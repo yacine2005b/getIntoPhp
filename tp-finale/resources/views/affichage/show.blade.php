@@ -14,7 +14,6 @@
                 @else
                 <h4 style="color: red;text-transform :uppercase">{{$affichage->user->role}} <b style="color: black;text-transform:initial">{{$affichage->user->name}}</b></h4>
                 @endif
-             <div>@include('shared.deleteAffichage')</div>
              </div>
              <h6>{{$affichage->created_at}}</h6>
           <p class="affichage">{{$affichage->content}}</p>

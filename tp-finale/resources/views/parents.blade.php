@@ -1,24 +1,25 @@
+
+
 @extends('layout.layout')
 
 @section('content')
+@auth
 <h1> hello everyone</h1>
 <div class="Users">
     @foreach ($users as $user)
-@if ($user->role =='parent')
+@if ($user->role =='parent' && $user->name !=Auth()->user()->name)
 <div class="cardUser">
     <h3><u>{{$user->name}}</u></h3>
-    <a class="sndMessage" href="">Send a Message</a>
+    <a class="sndMessage" href="{{ route('message.create',['recipient_id' => $user->id, 'recipient_name' => $user->name]) }}" >Send Message</a>
 </div>
 @endif
 @endforeach
 </div>
 
-
-
-
-
-
-@endsection
+@endauth
+@guest
+    <h2>You Have To Login</h2>
+@endguest
 
 <style>
     .Users{
@@ -43,3 +44,4 @@
         margin: 20px;
     }
 </style>
+@endsection

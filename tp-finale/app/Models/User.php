@@ -21,7 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'bio',
+        'image'
     ];
 
     /**
@@ -43,6 +45,22 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public function affichages(){
-        return $this->hasMany(Affichage::class);    
+        return $this->hasMany(Affichage::class);
+    }
+    public function comments(){
+        return $this->hasMany(comment::class);
+    }
+    public function sent(){
+        return $this->hasMany(Message::class,'sender_id');
+    }
+    public function received(){
+        return $this->hasMany(Message::class,'sent_to_id');
+    }
+
+    public function getImageURL(){
+        if($this->image){
+            return url('storage/'.$this->image);
+        }
+        return "images/unknownPfp.png";
     }
 }

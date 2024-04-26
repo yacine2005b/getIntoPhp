@@ -4,7 +4,9 @@ use App\Http\Controllers\affichageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashbordController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\newsController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,3 +37,14 @@ Route::post('/logout',[AuthController::class,'logout'] )->name('logout');
 
 Route::get('/parents',[AuthController::class,'showParents'] )->name('parents');
 Route::get('/teachers',[AuthController::class,'showTeachers'] )->name('teachers');
+
+Route::get('/messages', [MessageController::class, 'index'])->name('message.index');
+Route::get('/messages/create/{recipient_id?}/{recipient_name?}', [MessageController::class, 'create'])->name('message.create');
+Route::get('/messages/create', [MessageController::class, 'create'])->name('message.create');
+
+Route::post('/messages', [MessageController::class, 'store'])->name('message.store');
+Route::get('/messages/from/{sender_id}', [MessageController::class, 'messagesFromSender'])->name('messages.from');
+
+
+route::resource('users',UserController::class)->only('show','edit','update')->middleware('auth');
+Route::get('/prorile',[UserController::class,'profile'] )->name('profile')->middleware('auth');

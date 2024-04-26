@@ -13,6 +13,7 @@ class affichageController extends Controller
         $validated = request()->validate([
             "content"=> 'required|min:3|max:256',
         ]);
+
     $validated['user_id']=auth()->id();
  Affichage::create( $validated );
 
